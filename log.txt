@@ -1,0 +1,76 @@
+
+Time of Log: Saturday, 12/01/2018, 12:39 PM
+
+Title: The Wizard of Oz
+Year: 1939
+IMDB Rating: 8.0
+Rotten Tomatoes Rating: 98%
+Country Produced: USA
+Language: English
+Plot: Dorothy Gale is swept away from a farm in Kansas to a magical land of Oz in a tornado and embarks on a quest with her new friends to see the Wizard who can help her return home to Kansas and help her friends as well.
+Actors and Actresses: Judy Garland, Frank Morgan, Ray Bolger, Bert Lahr
+------------------------------------------------------------
+
+Time of Log: Saturday, 12/01/2018, 12:46 PM
+
+Command Line Action: node movie-this up
+
+Title: Up
+Year: 2009
+IMDB Rating: 8.3
+Rotten Tomatoes Rating: 98%
+Country Produced: USA
+Language: English
+Plot: Seventy-eight year old Carl Fredricksen travels to Paradise Falls in his home equipped with balloons, inadvertently taking a young stowaway.
+Actors and Actresses: Edward Asner, Christopher Plummer, Jordan Nagai, Bob Peterson
+------------------------------------------------------------
+
+Time of Log: Saturday, 12/01/2018, 12:48 PM
+
+Node Command Line Action: node movie-this ariana grande
+
+Venue Name: Times Union Center
+Venue Location: Albany, NY, United States
+Event Date: 03/18/2019
+------------------------------------------------------------
+
+Time of Log: Saturday, 12/01/2018, 12:54 PM
+
+Node Command Line Action: node spotify-this-song "I Want It That Way"
+
+Artist(s): Backstreet Boys
+Song Name: I Want It That Way
+Link: https://api.spotify.com/v1/tracks/6e40mgJiCid5HRAGrbpGA6
+Album Name: The Hits--Chapter One
+------------------------------------------------------------
+
+Time of Log: Saturday, 12/01/2018, 13:59 PM
+
+Node Command Action: node spotify-this-song Pilot Tyler the Creator
+
+Artist(s): Tyler, The Creator
+Song Name: PILOT (feat. Sydney Bennett)
+Link: https://api.spotify.com/v1/tracks/332Yig3HD2IdDigzlf5Ndl
+Album Name: Cherry Bomb
+------------------------------------------------------------
+
+Time of Log: Saturday, 12/01/2018, 14:06 PM
+
+Node Command Action: node spotify-this-song Pilot Tyler the Creator
+
+Artist(s): Tyler, The Creator
+Song Name: PILOT (feat. Sydney Bennett)
+Link: https://api.spotify.com/v1/tracks/332Yig3HD2IdDigzlf5Ndl
+Album Name: Cherry Bomb
+------------------------------------------------------------
+
+Time of Log: Saturday, 12/01/2018, 14:07 PM
+
+Node Command Action: node spotify-this-song Pilot Tyler the Creator
+
+Artist(s): Tyler, The Creator
+Song Name: PILOT (feat. Sydney Bennett)
+Link: https://open.spotify.com/track/332Yig3HD2IdDigzlf5Ndl
+Album Name: Cherry Bomb
+------------------------------------------------------------
+

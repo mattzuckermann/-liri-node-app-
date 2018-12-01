@@ -1,6 +1,8 @@
 require("dotenv").config();
 
-// console.log('this is loaded');
+console.log(`
+Your search is loading...
+`);
 
 exports.spotify = {
   id: process.env.SPOTIFY_ID,
