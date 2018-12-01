@@ -1,6 +1,6 @@
 var request = require("request");
 var moment = require("moment");
-var nodeSpotifyApi = require("node-spotify-api");
+var Spotify = require("node-spotify-api");
 var fs = require("fs");
 
 var keys = require("./keys.js");
@@ -33,9 +33,9 @@ Please utilize one of the four Liri Bot functions:
 // `concert-this`
 function concertThis() {
   request("https://rest.bandsintown.com/artists/" + input + "/events?app_id=" + keys.bandsInTown.id, function (error, response, body) {
-    console.log('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', JSON.parse(body)); //Print HTML into string
+    // console.log('error:', error); // Print the error if one occurred
+    // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    // console.log('body:', JSON.parse(body)); //Print HTML into string
     var arr = JSON.parse(body); //converts string into object and captures it to a variable
     console.log(`Venue Name: ${arr[0].venue.name}
 Venue Location: ${arr[0].venue.city}, ${arr[0].venue.region}, ${arr[0].venue.country}
@@ -43,18 +43,43 @@ Event Date: ${moment(arr[0].datetime).format("MM/DD/YYYY")}`)
   });
 };
 
-
 // `spotify-this-song`
-function spotifyThisSong() {
-  // var URL = ;
+function spotifyThisSong(inputArg) {
+  var spotify = new Spotify(keys.spotify);
+  spotify.search({ type: "track", limit: 1, query: inputArg }, function(err, data) {
+    if (err) {
+      return console.log("Error occured: " + err);
+    }
+    var results = data.itemstracks
+    console.log(results.album
+    console.log()
+      for (i=0; i < results.artists.length; i++) {
+
+      }
+      results.artisty});
+    console.log(results.name);
+    console.log("Link" + results.href)
+  })
 };
 
 // `movie-this`
 function movieThis() {
-  request("http://www.omdbapi.com/?r=json&type=movie&s=" + input + "&apikey=" + keys.omdb.key, function (error, response, body) {
-    console.log('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the Google homepage.
+  request("http://www.omdbapi.com/?r=json&type=movie&t=" + input + "&apikey=" + keys.omdb.key, function (error, response, body) {
+    // console.log('error:', error); // Print the error if one occurred
+    // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    // console.log('body:', JSON.parse(body)); // Print the HTML into string
+    var arr = JSON.parse(body); //converts string into object and captures it to a variable
+    console.log(`------------------------
+Title: ${arr.Title}
+Year: ${arr.Year}
+IMDB Rating: ${arr.imdbRating}
+Rotten Tomatoes Rating: ${arr.Ratings[1].Value}
+Country Produced: ${arr.Country}
+Language: ${arr.Language}
+Plot: ${arr.Plot}
+Actors and Actresses: ${arr.Actors}
+------------------------
+`)
   });
 };
 
@@ -74,32 +99,6 @@ function doWhatItSays() {
   });
 
 };
-
-
-
-// //Constructor Function
-// BandsInTown() {
-// console.log(`Didn't work`);
-// };
-
-// Omdb() {
-// console.log(`Didn't work`);
-// };
-
-// Spotify() {
-// console.log(`Didn't work`);
-// };
-
-// var bandsInTown = new BandsInTown(keys.bandsInTown);
-// var omdb = new Omdb(keys.omdb);
-// var spotify = new Spotify(keys.spotify);
-
-
-
-
-
-
-
 
 
 //HAVE TO INCLUDE SCREENSHOTS, A GIF, AND/OR A VIDEO SHOWING GRADER 
