@@ -15,12 +15,10 @@ switch (liriInput) {
     spotifyThisSong(input);
     break;
   case "movie-this":
-    switch (input) {
-      case "h":
-        movieThis("Mr.+Nobody");
-        break;
-      default:
-        movieThis(input);
+    if (input == null) {
+      movieThis("Mr.+Nobody");
+    } else {
+      movieThis(input);
     }
     break;
   case "do-what-it-says":
@@ -39,43 +37,48 @@ Please utilize one of the following four Liri Bot functions:
 // `concert-this`
 function concertThis(inputArg) {
   request("https://rest.bandsintown.com/artists/" + inputArg + "/events?app_id=" + keys.bandsInTown.id, function (error, response, body) {
-    // console.log('error:', error); // Print the error if one occurred
-    // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    // console.log('body:', JSON.parse(body)); //Print HTML into string
-    var arr = JSON.parse(body); //converts string into object and captures it to a variable
-    console.log(`Venue Name: ${arr[0].venue.name}
+    if (error) {
+      console.log('error:', error); // Print the error if one occurred
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    } else {
+      var arr = JSON.parse(body); //converts string into object and captures it to a variable
+      console.log(`------------------------
+Venue Name: ${arr[0].venue.name}
 Venue Location: ${arr[0].venue.city}, ${arr[0].venue.region}, ${arr[0].venue.country}
-Event Date: ${moment(arr[0].datetime).format("MM/DD/YYYY")}`)
+Event Date: ${moment(arr[0].datetime).format("MM/DD/YYYY")}
+------------------------`)
+    }
   });
 };
 
-// // `spotify-this-song`
-// function spotifyThisSong(inputArg) {
-//   var spotify = new Spotify(keys.spotify);
-//   spotify.search({ type: "track", limit: 1, query: inputArg }, function(err, data) {
-//     if (err) {
-//       return console.log("Error occured: " + err);
-//     }
-//     var results = data.items.tracks
-//     // console.log(results.album
-//     console.log()
-//       for (i=0; i < results.artists.length; i++) {
+// `spotify-this-song`
+function spotifyThisSong(inputArg) {
+  var spotify = new Spotify(keys.spotify);
+  spotify.search({ type: "track", limit: 1, query: inputArg }, function (err, data) {
+    if (err) {
+      return console.log("Error occured: " + err);
+    }
+    var resultsArtists = data.tracks.items
+    var results = data.tracks.items[0];
+    console.log(`------------------------
 
-//       }
-//       results.artisty});
-//     console.log(results.name);
-//     console.log("Link" + results.href)
-//   })
-// };
+Artists: ${results.artists}
+Song Name: ${results.name}
+Link: ${results.href}
+Album Name: ${results.album.name}
+------------------------`)
+  });
+}
 
 // `movie-this`
 function movieThis(inputArg) {
   request("http://www.omdbapi.com/?r=json&type=movie&t=" + inputArg + "&apikey=" + keys.omdb.key, function (error, response, body) {
-    // console.log('error:', error); // Print the error if one occurred
-    // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    // console.log('body:', JSON.parse(body)); // Print the HTML into string
-    var arr = JSON.parse(body); //converts string into object and captures it to a variable
-    console.log(`------------------------
+    if (error) {
+      console.log('error:', error); // Print the error if one occurred
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    } else {
+      var arr = JSON.parse(body); //converts string into object and captures it to a variable
+      console.log(`------------------------
 Title: ${arr.Title}
 Year: ${arr.Year}
 IMDB Rating: ${arr.imdbRating}
@@ -84,8 +87,8 @@ Country Produced: ${arr.Country}
 Language: ${arr.Language}
 Plot: ${arr.Plot}
 Actors and Actresses: ${arr.Actors}
-------------------------
-`)
+------------------------`)
+    }
   });
 };
 
@@ -94,23 +97,18 @@ function doWhatItSays() {
   let fileName = "random.txt"
   fs.readFile(fileName, 'utf8', function (err, data) {
     if (err) throw err;
-    console.log('OK: ' + fileName);
-    console.log(data)
     let dataArr = data.split(",");
     let liriInput = dataArr[0];
-    let inputDo = dataArr[1];
-
-    console.log(dataArr);
-
+    let input = dataArr[1];
     switch (liriInput) {
       case "concert-this":
-        concertThis(inputDo);
+        concertThis(input);
         break;
       case "spotify-this-song":
-        spotifyThisSong(inputDo);
+        spotifyThisSong(input);
         break;
       case "movie-this":
-        movieThis(inputDo);
+        movieThis(input);
         break;
       default:
         console.log(`----------------------------------------------
