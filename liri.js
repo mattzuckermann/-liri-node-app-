@@ -9,20 +9,26 @@ let input = process.argv[3];
 
 switch (liriInput) {
   case "concert-this":
-    concertThis();
+    concertThis(input);
     break;
   case "spotify-this-song":
-    spotifyThisSong();
+    spotifyThisSong(input);
     break;
   case "movie-this":
-    movieThis();
+    switch (input) {
+      case "h":
+        movieThis("Mr.+Nobody");
+        break;
+      default:
+        movieThis(input);
+    }
     break;
   case "do-what-it-says":
     doWhatItSays();
     break;
   default:
     console.log(`----------------------------------------------
-Please utilize one of the four Liri Bot functions:
+Please utilize one of the following four Liri Bot functions:
     1. concert-this
     2. spotify-this-song
     3. movie-this
@@ -31,8 +37,8 @@ Please utilize one of the four Liri Bot functions:
 }
 
 // `concert-this`
-function concertThis() {
-  request("https://rest.bandsintown.com/artists/" + input + "/events?app_id=" + keys.bandsInTown.id, function (error, response, body) {
+function concertThis(inputArg) {
+  request("https://rest.bandsintown.com/artists/" + inputArg + "/events?app_id=" + keys.bandsInTown.id, function (error, response, body) {
     // console.log('error:', error); // Print the error if one occurred
     // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
     // console.log('body:', JSON.parse(body)); //Print HTML into string
@@ -43,28 +49,28 @@ Event Date: ${moment(arr[0].datetime).format("MM/DD/YYYY")}`)
   });
 };
 
-// `spotify-this-song`
-function spotifyThisSong(inputArg) {
-  var spotify = new Spotify(keys.spotify);
-  spotify.search({ type: "track", limit: 1, query: inputArg }, function(err, data) {
-    if (err) {
-      return console.log("Error occured: " + err);
-    }
-    var results = data.itemstracks
-    console.log(results.album
-    console.log()
-      for (i=0; i < results.artists.length; i++) {
+// // `spotify-this-song`
+// function spotifyThisSong(inputArg) {
+//   var spotify = new Spotify(keys.spotify);
+//   spotify.search({ type: "track", limit: 1, query: inputArg }, function(err, data) {
+//     if (err) {
+//       return console.log("Error occured: " + err);
+//     }
+//     var results = data.items.tracks
+//     // console.log(results.album
+//     console.log()
+//       for (i=0; i < results.artists.length; i++) {
 
-      }
-      results.artisty});
-    console.log(results.name);
-    console.log("Link" + results.href)
-  })
-};
+//       }
+//       results.artisty});
+//     console.log(results.name);
+//     console.log("Link" + results.href)
+//   })
+// };
 
 // `movie-this`
-function movieThis() {
-  request("http://www.omdbapi.com/?r=json&type=movie&t=" + input + "&apikey=" + keys.omdb.key, function (error, response, body) {
+function movieThis(inputArg) {
+  request("http://www.omdbapi.com/?r=json&type=movie&t=" + inputArg + "&apikey=" + keys.omdb.key, function (error, response, body) {
     // console.log('error:', error); // Print the error if one occurred
     // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
     // console.log('body:', JSON.parse(body)); // Print the HTML into string
@@ -92,13 +98,31 @@ function doWhatItSays() {
     console.log(data)
     let dataArr = data.split(",");
     let liriInput = dataArr[0];
-    let input = dataArr[1];
+    let inputDo = dataArr[1];
+
     console.log(dataArr);
 
-    spotifyThisSong();
+    switch (liriInput) {
+      case "concert-this":
+        concertThis(inputDo);
+        break;
+      case "spotify-this-song":
+        spotifyThisSong(inputDo);
+        break;
+      case "movie-this":
+        movieThis(inputDo);
+        break;
+      default:
+        console.log(`----------------------------------------------
+    Please utilize one of the following three Liri Bot functions within random.txt before the comma:
+        1. concert-this
+        2. spotify-this-song
+        3. movie-this
+    ----------------------------------------------`);
+    }
   });
-
 };
+
 
 
 //HAVE TO INCLUDE SCREENSHOTS, A GIF, AND/OR A VIDEO SHOWING GRADER 
