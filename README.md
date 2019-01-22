@@ -2,7 +2,7 @@
 
 
 
-## Purpose Of App:
+### Purpose Of App:
 This app creates ajax calls to three different APIs (Bandsintown, Spotify, and IMDB) depending on the user input on the Node.js CLI. The user can link to the proper API using either "concert-this" for Bandsintown, "spotify-this-song" for Spotify, or "movie-this" for IMDB. The main goal of the app then is to output the results from these APIs in the CLI based on the search term(s) given to API.
 
 ---
