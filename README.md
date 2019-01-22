@@ -23,7 +23,7 @@ The table below shows which commands run the respective APIs.
 ### Liri-Bot Commands Reference:
 
 Command | API Launched
-:---: | :---:
+--- | ---
 concert-this | Bandsintown
 spotify-this-song" | Spotify
 movie-this | IMDB
