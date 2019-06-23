@@ -8,7 +8,7 @@ This app creates ajax calls to three different APIs (Bandsintown, Spotify, and I
 ---
 
 ### Video Walk Through:
-Click [here](https://www.youtube.com/watch?v=8cOBg6EDE40) for a video walk-through of my Liri-Bot app in Node.js:
+Click [here](https://www.youtube.com/watch?v=boK_bb6fKoA) for a video walk-through of my Liri-Bot app in Node.js:
 
 ---
 
