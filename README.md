@@ -1,4 +1,4 @@
-# Liri-Bot_Node-Javascript-RestAPIs
+# LiriBot
 
 
 
